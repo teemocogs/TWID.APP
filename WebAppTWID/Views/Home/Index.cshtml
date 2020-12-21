@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "TWID.app";
+}
+
+<div class="jumbotron">
+    <h1>TWID.app</h1>
+    <p class="lead">實驗性質，尋找一個多元身份驗證的解決方案，為社群的每個人提供延伸的弱綁定。</p>
+    <p class="lead text-info">透過驗證您的帳號，我們為你的 PTT ID 標記為通過 TWID.app 驗證。</p>
+    <p class="lead">請注意，我們讓任何人都可以在 TWID.app 的網站上查到此 PTT ID 是否通過驗證，</p>
+    <p class="lead">你必須是自願揭露你通過了驗證，而我們也歡迎你隨時申請撤銷已被驗證的項目。</p>
+    <p class="text-danger">
+        &raquo;
+        我們不揭露個資，我們僅回答你是否通過了驗證，而我們也歡迎你隨時申請撤銷帳號與驗證。
+    </p>
+    <p>
+        @Html.ActionLink("關於本實驗...", "About", "Home", null, new { @class = "btn btn-primary btn-lg" })
+        @Html.ActionLink("TWID.app 名單", "Users", "Deck", null, new { @class = "btn btn-success btn-lg" })
+    </p>
+    @if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("我的認證表列", "Index", "Deck", null, new { @class = "btn btn-warning btn-lg" })
+        </p>
+    }
+</div>
+
+<div class="container">
+
+
+</div>
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="bs-component">
+            <div class="card border-success  mb-3">
+                <div class="card-header"><span class="badge badge-dark">驗證A</span><h4 class="card-title"><strong>Email</strong> 綁定驗證</h4></div>
+                <div class="card-body">
+                    
+                    <p class="card-text">發驗證碼給你的Email。</p>
+                    <p class="card-text">註冊時開啟驗證信裡的連結通過驗證。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="bs-component">
+            <div class="card border-info mb-3">
+                <div class="card-header"><span class="badge badge-dark">驗證B</span> <h4 class="card-title"><strong>PTT ID</strong></h4> </div>
+                <div class="card-body">
+                    <p class="card-text">發驗證碼給你的 PTT ID 進行一次性驗證。</p>
+                    <p class="card-text">站內信箱會收到驗證碼回填系統即通過。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="bs-component">
+            <div class="card border-danger mb-3">
+                <div class="card-header"><span class="badge badge-dark">驗證C</span><h4 class="card-title"><strong>自然人憑證</strong> 身分驗證</h4></div>
+                <div class="card-body">
+                    <p class="card-text">插卡讀自然人憑證 PKCS7 簽章驗證。</p>
+                    <p class="card-text">取得站內信驗證碼與自然人憑證綁定驗證。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

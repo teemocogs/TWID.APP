@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "驗證你的 Email";
+}
+
+<h2>驗證你的 Email</h2>
+
+<div class="container-fluid">
+    @if (ViewBag.EmailConfirmed == false)
+    {
+        using (Html.BeginForm("BeaconEmail", "Account", FormMethod.Post))
+        {
+            <label class="text-danger">想重新驗證 Email？</label>
+            <input type="submit" value="重發驗證連結至 Email" class="btn btn-outline-success" />
+        }
+    }
+    else
+    {
+        <label>你已通過 Email 驗證!</label>
+    }
+</div>
+

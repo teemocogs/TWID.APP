@@ -1,0 +1,95 @@
+﻿@using WebAppTWID.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "歡迎來到 TWID.app";
+}
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<style>
+    [type="checkbox"]:checked:after {
+        content: "v";
+        font-weight: 600;
+    }
+
+    #VerifyCode {
+        width: 80px;
+    }
+</style>
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+
+    <div class="col-md-8">
+        <div class="col-md-12">
+            @Html.ActionLink("註冊，成為新使用者", "Register", null, new { @class = "btn btn-info btn-block btn-lg" })
+        </div>
+        <hr />
+        <section id="loginForm" class="card border-secondary">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+
+                <div class="card-header">
+                    <h4>已註冊，使用 Email 帳戶登入。</h4>
+                </div>
+                <div class="card-body">
+                    @Html.AntiForgeryToken()
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                @Html.LabelFor(m => m.RememberMe, new { @class = "control-label" })
+                                &emsp;
+                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkbox col-md-offset-2 " })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="g-recaptcha"
+                                 data-sitekey="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="登入" class="btn btn-block btn-success btn-lg" />
+                        </div>
+                    </div>
+                </div>
+
+                @* 請在啟用密碼重設功能的帳戶確認之後啟用此項目
+                <p>
+                    @Html.ActionLink("忘記密碼?", "ForgotPassword")
+                </p>*@
+            }
+        </section>
+
+    </div>
+    @*<div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>*@
+</div>
+<p></p>
+<p></p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

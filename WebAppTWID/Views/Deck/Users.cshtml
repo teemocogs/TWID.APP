@@ -1,0 +1,133 @@
+﻿@using PagedList.Mvc
+@using X.PagedList.Mvc.Bootstrap4
+@model  PagedList.IPagedList<DBHelper.AspNetUsers>
+
+@{
+    ViewBag.Title = "TWID.app 認證名單";
+}
+
+<h2>TWID.app 認證名單</h2>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<table class="table table-hover">
+    <tr class="table-info">
+        <th>
+            PTT ID
+        </th>
+        <th>
+            PTT ID 認證
+        </th>
+        <th>
+            Email 認證
+        </th>
+        <th>
+            自然人憑證認證
+        </th>
+        <th>
+            AOTP 認證
+        </th>
+        <th>
+            新式身分證驗證
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        @if (item.VerifyType0)
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType0" checked="" disabled="">
+                            <label class="custom-control-label" for="VerifyType0">已通過</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType0" disabled="">
+                            <label class="custom-control-label" for="VerifyType0">未通過</label>
+                        }
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        @if (item.EmailConfirmed)
+                        {
+                            <input type="checkbox" class="custom-control-input" id="EmailConfirmed" checked="" disabled="">
+                            <label class="custom-control-label" for="EmailConfirmed">已通過</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="custom-control-input" id="EmailConfirmed" disabled="">
+                            <label class="custom-control-label" for="EmailConfirmed">未通過</label>
+                        }
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        @if (item.VerifyType1)
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType1" checked="" disabled="">
+                            <label class="custom-control-label" for="VerifyType1">已通過</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType1" disabled="">
+                            <label class="custom-control-label" for="VerifyType1">未通過</label>
+                        }
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        @if (item.VerifyType2)
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType2" checked="" disabled="">
+                            <label class="custom-control-label" for="VerifyType2">已通過</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType2" disabled="">
+                            <label class="custom-control-label" for="VerifyType2">未通過</label>
+                        }
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        @if (item.VerifyType3)
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType3" checked="" disabled="">
+                            <label class="custom-control-label" for="VerifyType3">已通過</label>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="custom-control-input" id="VerifyType3" disabled="">
+                            <label class="custom-control-label" for="VerifyType3">未通過</label>
+                        }
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="offset-md-5">
+            @Html.PagedListPager(Model, page => Url.Action("List", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "驗證你的 PTT ID";
+}
+<script type="text/javascript">
+
+    function submitCheckBase5UserId() {
+        if (document.getElementById("code").value.length != 5) {
+            alert("驗證碼需5碼");
+            return;
+        }
+        document.getElementById("CheckBase5UserId").submit();
+    }
+
+    function submitBeaconPTTID() {
+        document.getElementById("BeaconPTTID").submit();
+    }
+</script>
+
+
+<h2>驗證你的 PTT ID</h2>
+<hr />
+<div class="container-fluid">
+    @if (ViewBag.isPTTIDConfirmed == false)
+    {
+        <div class="card border-warning mb-6">
+            <div class="card-header">驗證碼不在您的 PTT ID 站內信箱？</div>
+            <div class="card-body">
+                <h4 class="card-title">註冊後有發驗證碼至您的 PTT ID 站內信箱</h4>
+                @using (Html.BeginForm("BeaconPTTID", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "BeaconPTTID" }))
+                {
+                    <p class="text-dark">若沒收到站內信，有重發機制取得驗證碼</p>
+                    <p class="text-dark">系統將會發送驗證碼至你的 PTT ID 站內信箱</p>
+                    <label class="text-danger">按下取得後，請至 PTT 站內收信(大概等待三分鐘)</label>
+                    <p class="text-dark">信件標題  TWID.app PTTID Verification code</p>
+                    <div class="form-group" style="margin-top:10px;">
+                        <input type="button" value="取得" class="btn btn-outline-success" onclick="submitBeaconPTTID()" />
+                    </div>
+                }
+            </div>
+        </div>
+        <hr />
+        <div class="card border-warning mb-6">
+
+            <div class="card-header">你已經收到驗證碼了嗎？</div>
+            <div class="card-body">
+                <h4 class="card-title">請貼上你在站內信收到的驗證碼</h4>
+                <p class="text-dark">信件標題  TWID.app PTTID Verification code</p>
+                @using (Html.BeginForm("CheckBase5UserId", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "CheckBase5UserId" }))
+                {
+
+                    <div class="form-group">
+                        <label>驗證碼：</label>
+                        @Html.TextBox("code", null, new { @class = "form-control col-md-2", placeholder = "?????" })
+                        <label>(驗證碼有大寫英文或數字)</label>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <input type="button" value="提交" class="btn btn-outline-info" onclick="submitCheckBase5UserId()" />
+                    </div>
+
+
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <label>你已通過 PTT ID 驗證!</label>
+    }
+</div>

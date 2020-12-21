@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right nav-link" }))
+    {
+    @Html.AntiForgeryToken()
+     
+<ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+        @Html.ActionLink("我的認證表列", "Index", "Deck", null, new { @class = "nav-link btn-outline-warning" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("設定 " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+    </li>
+    <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">登出</a></li>
+</ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" , @class = "nav-link" })</li>
+        <li class="nav-item">@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" , @class = "nav-link" })</li>
+    </ul>
+}

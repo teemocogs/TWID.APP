@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TWIDAPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActionLog">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="40" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreateTime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="VerifyType0" Type="bit" Nullable="false" />
+          <Property Name="VerifyType1" Type="bit" Nullable="false" />
+          <Property Name="VerifyType2" Type="bit" Nullable="false" />
+          <Property Name="VerifyType3" Type="bit" Nullable="false" />
+          <Property Name="VerifyType4" Type="bit" Nullable="false" />
+          <Property Name="VerifyType5" Type="bit" Nullable="false" />
+          <Property Name="VerifyType6" Type="bit" Nullable="false" />
+          <Property Name="VerifyType7" Type="bit" Nullable="false" />
+          <Property Name="VerifyType8" Type="bit" Nullable="false" />
+          <Property Name="VerifyType9" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MOICASHA256">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HMACSHA256" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MOICASN">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Verification">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PTTID" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="VerifyType" Type="int" Nullable="false" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="CreateDateIP" Type="nvarchar" MaxLength="30" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
+          <Property Name="ModifyDateIP" Type="nvarchar" MaxLength="30" />
+          <Property Name="AvailableDate" Type="datetime2" Precision="7" />
+          <Property Name="Base5" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="VerifyType">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="TWIDAPPModelStoreContainer">
+          <EntitySet Name="ActionLog" EntityType="Self.ActionLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOICASHA256" EntityType="Self.MOICASHA256" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOICASN" EntityType="Self.MOICASN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Verification" EntityType="Self.Verification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VerifyType" EntityType="Self.VerifyType" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TWIDAPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActionLog">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityContainer Name="TWIDAPPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActionLog" EntityType="Self.ActionLog" />
+          <EntitySet Name="VerifyType" EntityType="TWIDAPPModel.VerifyType" />
+          <EntitySet Name="AspNetUsers" EntityType="TWIDAPPModel.AspNetUsers" />
+          <EntitySet Name="Verification" EntityType="TWIDAPPModel.Verification" />
+          <EntitySet Name="MOICASHA256" EntityType="TWIDAPPModel.MOICASHA256" />
+          <EntitySet Name="MOICASN" EntityType="TWIDAPPModel.MOICASN" />
+        </EntityContainer>
+        <EntityType Name="VerifyType">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="VerifyType0" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType1" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType2" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType3" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType4" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType5" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType6" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType7" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType8" Type="Boolean" Nullable="false" />
+          <Property Name="VerifyType9" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Verification">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PTTID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="VerifyType" Type="Int32" Nullable="false" />
+          <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="CreateDateIP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
+          <Property Name="ModifyDateIP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="AvailableDate" Type="DateTime" Precision="7" />
+          <Property Name="Base5" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MOICASHA256">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="Guid" Nullable="false" />
+          <Property Name="HMACSHA256" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MOICASN">
+          <Key>
+            <PropertyRef Name="no" />
+          </Key>
+          <Property Name="no" Type="Guid" Nullable="false" />
+          <Property Name="SN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TWIDAPPModelStoreContainer" CdmEntityContainer="TWIDAPPEntities">
+          <EntitySetMapping Name="ActionLog">
+            <EntityTypeMapping TypeName="TWIDAPPModel.ActionLog">
+              <MappingFragment StoreEntitySet="ActionLog">
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="ClientIP" ColumnName="ClientIP" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VerifyType">
+            <EntityTypeMapping TypeName="TWIDAPPModel.VerifyType">
+              <MappingFragment StoreEntitySet="VerifyType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="no" ColumnName="no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TWIDAPPModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="VerifyType9" ColumnName="VerifyType9" />
+                <ScalarProperty Name="VerifyType8" ColumnName="VerifyType8" />
+                <ScalarProperty Name="VerifyType7" ColumnName="VerifyType7" />
+                <ScalarProperty Name="VerifyType6" ColumnName="VerifyType6" />
+                <ScalarProperty Name="VerifyType5" ColumnName="VerifyType5" />
+                <ScalarProperty Name="VerifyType4" ColumnName="VerifyType4" />
+                <ScalarProperty Name="VerifyType3" ColumnName="VerifyType3" />
+                <ScalarProperty Name="VerifyType2" ColumnName="VerifyType2" />
+                <ScalarProperty Name="VerifyType1" ColumnName="VerifyType1" />
+                <ScalarProperty Name="VerifyType0" ColumnName="VerifyType0" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Verification">
+            <EntityTypeMapping TypeName="TWIDAPPModel.Verification">
+              <MappingFragment StoreEntitySet="Verification">
+                <ScalarProperty Name="Base5" ColumnName="Base5" />
+                <ScalarProperty Name="AvailableDate" ColumnName="AvailableDate" />
+                <ScalarProperty Name="ModifyDateIP" ColumnName="ModifyDateIP" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDateIP" ColumnName="CreateDateIP" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="VerifyType" ColumnName="VerifyType" />
+                <ScalarProperty Name="PTTID" ColumnName="PTTID" />
+                <ScalarProperty Name="no" ColumnName="no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOICASHA256">
+            <EntityTypeMapping TypeName="TWIDAPPModel.MOICASHA256">
+              <MappingFragment StoreEntitySet="MOICASHA256">
+                <ScalarProperty Name="HMACSHA256" ColumnName="HMACSHA256" />
+                <ScalarProperty Name="no" ColumnName="no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOICASN">
+            <EntityTypeMapping TypeName="TWIDAPPModel.MOICASN">
+              <MappingFragment StoreEntitySet="MOICASN">
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="no" ColumnName="no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

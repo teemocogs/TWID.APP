@@ -1,0 +1,66 @@
+﻿@model WebAppTWID.Models.RegisterViewModel
+@{
+    ViewBag.Title = "註冊";
+}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>建立新的帳戶。</h4>
+    <hr />
+    <p class="text-info"><strong>在你繼續註冊流程之前，請幫我確認批踢踢個人化設定為：拒收站外信(否)</strong></p>
+    <div class="alert alert-dismissible alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+        <img src="~/img/Register/1.png" class="img-fluid img-thumbnail" />
+        <img src="~/img/Register/2.png" class="img-fluid img-thumbnail" />
+        <img src="~/img/Register/3.png" class="img-fluid img-thumbnail" />
+    </div>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "可用 Gmail 或任意 Email，如果日後收不到信也只是浪費時間唷~" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PTTID, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.PTTID, new { @class = "form-control", placeholder = "我會寄一封信給這個 PTT ID，內有驗證碼." })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "請想一個新的然後抄起來自己收好." })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "怕你打錯字，再輸入一次剛剛的密碼吧." })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="g-recaptcha"
+                 data-sitekey="">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit"
+                   class="btn btn-success btn-block"
+                   value="註冊" />
+        </div>
+    </div>
+}
+<p></p>
+<p></p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
